@@ -1,4 +1,4 @@
-# material-svg-icons
+# material-svg-icons-web
 
 Material Symbols SVGs (24px) extracted from https://github.com/google/material-design-icons.
 
@@ -21,7 +21,7 @@ SVGs are stored under:
 ### TypeScript icon names
 
 ```ts
-import type { IconName } from "material-svg-icons";
+import type { IconName } from "material-svg-icons-web";
 ```
 
 ## Generate icons locally
