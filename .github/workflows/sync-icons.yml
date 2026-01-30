@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "0 3 * * *"
   workflow_dispatch:
+    inputs:
+      force:
+        description: "Force publish even if no changes are detected"
+        required: false
+        default: "false"
 
 jobs:
   sync:
@@ -38,7 +43,9 @@ jobs:
       - name: Detect changes
         id: diff
         run: |
-          if git status --porcelain | grep -q .; then
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          elif git status --porcelain | grep -q .; then
             echo "changed=true" >> "$GITHUB_OUTPUT"
           else
             echo "changed=false" >> "$GITHUB_OUTPUT"
