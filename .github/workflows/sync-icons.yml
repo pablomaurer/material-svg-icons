@@ -107,6 +107,15 @@ jobs:
           });
           NODE
 
+      - name: Prepare npm config
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          cat > /tmp/npmrc <<'EOF'
+          registry=https://registry.npmjs.org/
+          always-auth=false
+          EOF
+          echo "NPM_CONFIG_USERCONFIG=/tmp/npmrc" >> "$GITHUB_ENV"
+
       - name: Commit changes
         if: steps.diff.outputs.changed == 'true'
         run: |
@@ -117,5 +126,3 @@ jobs:
       - name: Publish
         if: steps.diff.outputs.changed == 'true'
         run: npm publish --provenance --access public
-        env:
-          NPM_CONFIG_USERCONFIG: /dev/null
