@@ -1,4 +1,4 @@
-name: sync-icons
+name: publish
 
 on:
   schedule:
