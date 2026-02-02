@@ -5,6 +5,10 @@
   "license": "Apache-2.0",
   "main": "index.js",
   "types": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pablomaurer/material-svg-icons-web.git"
+  },
   "files": [
     "icons",
     "index.js",
