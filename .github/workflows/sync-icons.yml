@@ -26,6 +26,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          registry-url: 'https://registry.npmjs.org'  # ADD THIS LINE
 
       - name: Clone upstream
         run: |
@@ -106,15 +107,6 @@ jobs:
             process.exit(1);
           });
           NODE
-
-      - name: Prepare npm config
-        if: steps.diff.outputs.changed == 'true'
-        run: |
-          cat > /tmp/npmrc <<'EOF'
-          registry=https://registry.npmjs.org/
-          always-auth=false
-          EOF
-          echo "NPM_CONFIG_USERCONFIG=/tmp/npmrc" >> "$GITHUB_ENV"
 
       - name: Commit changes
         if: steps.diff.outputs.changed == 'true'
